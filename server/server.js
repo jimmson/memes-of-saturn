@@ -25,11 +25,10 @@ app.use(bodyParser.json());
 app.use(fileUpload());
 
 app.post('/memes', authenticate, (req, res) => {
-
   var image = req.files.file;
 
   image.ext = image.name.split('.').pop();
-  image.newName = "mane";
+  image.newName = Date.now().toString();
   image.relativePath = ['/img', [image.newName, image.ext].join('.')].join('/');
   image.newPath = [__dirname, image.relativePath].join('/');
 
